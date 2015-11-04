@@ -18,8 +18,8 @@ public class Main {
         // curl -X POST -d "hello world" http://localhost:9090/postit
         post("/postit", (req, res) -> postIt(req.body()));
 
-        // curl -X POST -d '{"data" : "this is data", "dog" : "This is dog"}' http://localhost:9090/postJSON
-        post("/postJSON", (req, res) -> parseJSON(req.body(), "data"));
+        // curl -X POST -d '{"data" : [{"line" : "This is a line"}, {"line" : "This is also a line"}]}' http://localhost:9090/postJSON
+        post("/postJSON", (req, res) -> parseJSON(req.body()));
     }
 
     private static String methodRoute(){
@@ -34,15 +34,29 @@ public class Main {
         return bodyText;
     }
 
-    private static String parseJSON(String bodyText, String fieldName){
-        String fieldValue = "";
-        JSONParser parser = new JSONParser();
+    private static String parseJSON(String bodyText){
 
         try{
-            JSONObject obj2=(JSONObject)parser.parse(bodyText);
-            fieldValue = (String)obj2.get(fieldName);
-            System.out.println("==========field " + fieldName + "==========");
-            System.out.println(fieldValue);
+            JSONParser parser = new JSONParser();
+
+            // get the array that is the value for the key "data"
+            JSONObject obj=(JSONObject)parser.parse(bodyText);
+            Object fieldValue = obj.get("data");
+
+            // cast this to a JSON array to enable iteration
+            JSONArray array=(JSONArray)fieldValue;
+
+            for(int i = 0; i < array.size(); i++){
+                //cast each line to a JSON object
+                JSONObject lineDetails = (JSONObject)array.get(i);
+                String lineValue = (String)lineDetails.get("line");
+
+                System.out.println("====== element " + i + " ======");
+                System.out.println(lineDetails);
+                System.out.println("====== line value  ======");
+                System.out.println(lineValue);
+                System.out.println();
+            }
 
         }catch(ParseException pe){
 
@@ -50,6 +64,6 @@ public class Main {
             System.out.println(pe);
         }
 
-        return fieldValue;
+        return "done";
     }
 }
