@@ -1,4 +1,4 @@
-# Simple Spark app
+# Simple Spark api
 This code was tested in IntelliJ on a Mac, to get it working you may need to do the following:
 
 - Install the latest version of Java
