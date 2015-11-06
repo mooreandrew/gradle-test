@@ -42,11 +42,11 @@ brew cask install java
 ```
 - Clone the repo
 ```
-git clone 
+git clone git@github.com:LlamaComedian/gradle-test.git
 ```
 - Compile it
 ```
-cd gradle-test.git
+cd gradle-test
 gradle build
 ```
 - Run it
