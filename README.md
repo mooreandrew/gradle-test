@@ -13,7 +13,8 @@ This code was tested in IntelliJ on a Mac, to get it working:
 export CLASSPATH=$CLASSPATH:/Library/Java/Extensions/json-simple-1.1.1.jar)
 ```
 - In IntelliJ, right click project and select “Open Module Settings (F4)"
-- Click + button
+- Select the "dependencies" tab on the right
+- Click + button at the bottom of the dependencies window
 - Select “1 JARs or Directories”
 - Navigate to folder and select json-simple-1.1.1.jar
 - Run the server
