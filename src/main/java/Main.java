@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         port(System.getenv("PORT") != null ? Integer.parseInt(System.getenv("PORT")) : 9090); // Spark will run on port 9090, as opposed to 4567 which it will default to if not specified
 
-        get("/hello", (req, res) -> "Hello World test3");
+        get("/hello", (req, res) -> "Hello World test5 ");
 
         get("/method", (req, res) -> methodRoute());
 
